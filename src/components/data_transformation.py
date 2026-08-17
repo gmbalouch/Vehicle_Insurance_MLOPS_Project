@@ -99,8 +99,10 @@ class DataTransformation:
         """Drop the 'id' column if it exists."""
         logging.info("Dropping 'id' column")
         drop_col = self._schema_config['drop_columns']
+
         if drop_col in df.columns:
-            df = df.drop(drop_col, axis=1)
+            df = df.drop(columns=[drop_col])
+
         return df
 
     def initiate_data_transformation(self) -> DataTransformationArtifact:
@@ -117,10 +119,10 @@ class DataTransformation:
             test_df = self.read_data(file_path=self.data_ingestion_artifact.test_file_path)
             logging.info("Train-Test data loaded")
 
-            input_feature_train_df = train_df.drop(columns=[TARGET_COLUMN], axis=1)
+            input_feature_train_df = train_df.drop(columns=[TARGET_COLUMN])
             target_feature_train_df = train_df[TARGET_COLUMN]
 
-            input_feature_test_df = test_df.drop(columns=[TARGET_COLUMN], axis=1)
+            input_feature_test_df = test_df.drop(columns=[TARGET_COLUMN])
             target_feature_test_df = test_df[TARGET_COLUMN]
             logging.info("Input and Target cols defined for both train and test df.")
 
@@ -146,15 +148,20 @@ class DataTransformation:
             input_feature_test_arr = preprocessor.transform(input_feature_test_df)
             logging.info("Transformation done end to end to train-test df.")
 
-            logging.info("Applying SMOTEENN for handling imbalanced dataset.")
+            logging.info("Applying SMOTEENN for handling imbalanced training dataset.")
+
             smt = SMOTEENN(sampling_strategy="minority")
+
             input_feature_train_final, target_feature_train_final = smt.fit_resample(
-                input_feature_train_arr, target_feature_train_df
+                input_feature_train_arr,
+                target_feature_train_df
             )
-            input_feature_test_final, target_feature_test_final = smt.fit_resample(
-                input_feature_test_arr, target_feature_test_df
-            )
-            logging.info("SMOTEENN applied to train-test df.")
+
+            # Do NOT apply SMOTEENN to test data
+            input_feature_test_final = input_feature_test_arr
+            target_feature_test_final = target_feature_test_df
+
+            logging.info("SMOTEENN applied to training data only.")
 
             train_arr = np.c_[input_feature_train_final, np.array(target_feature_train_final)]
             test_arr = np.c_[input_feature_test_final, np.array(target_feature_test_final)]
