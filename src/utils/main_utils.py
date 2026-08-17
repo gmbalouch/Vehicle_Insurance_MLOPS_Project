@@ -103,3 +103,6 @@ def save_object(file_path: str, obj: object) -> None:
 #         return df
 #     except Exception as e:
 #         raise MyException(e, sys) from e
+
+
+#done in video 3. data validation

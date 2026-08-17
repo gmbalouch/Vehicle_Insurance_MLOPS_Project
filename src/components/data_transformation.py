@@ -181,3 +181,5 @@ class DataTransformation:
 
         except Exception as e:
             raise MyException(e, sys) from e
+
+# done src/components/data_transformation.py file is a core component of the MLOps pipeline responsible for preparing raw data for machine learning 

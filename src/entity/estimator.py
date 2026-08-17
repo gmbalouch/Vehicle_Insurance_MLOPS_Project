@@ -53,3 +53,7 @@ class MyModel:
 
     def __str__(self):
         return f"{type(self.trained_model_object).__name__}()"
+
+
+
+#The src/entity/estimator.py file defines a custom class, often referred to as a wrapper or model wrapper, which bundles your trained machine learning model together with its necessary pre-processing pipeline

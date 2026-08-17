@@ -144,3 +144,5 @@ class TrainPipeline:
             
         except Exception as e:
             raise MyException(e, sys)
+
+#The src/pipeline/training_pipeline.py file acts as the orchestrator for the entire machine learning workflow. It ensures that the individual components (data ingestion, validation, transformation, and model training) are executed in the correct sequence

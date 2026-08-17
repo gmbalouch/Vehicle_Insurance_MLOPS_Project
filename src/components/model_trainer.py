@@ -112,3 +112,5 @@ class ModelTrainer:
         
         except Exception as e:
             raise MyException(e, sys) from e
+
+#done The src/components/model_trainer.py file is responsible for the actual machine learning model training and evaluation process

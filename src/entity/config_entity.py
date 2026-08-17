@@ -67,3 +67,7 @@ class ModelPusherConfig:
 class VehiclePredictorConfig:
     model_file_path: str = MODEL_FILE_NAME
     model_bucket_name: str = MODEL_BUCKET_NAME
+
+
+
+#done src/entity/config_entity.py file serves as a data class definition (or contract) for your configuration parameters.    

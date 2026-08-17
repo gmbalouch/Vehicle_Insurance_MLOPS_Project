@@ -38,3 +38,9 @@ num_features:
 
 mm_columns:
   - Annual_Premium
+
+  #done schema.yaml
+
+  #why it is being used here:
+  #schema.yaml acts as a centralized configuration file to define the structure and data types expected from your dataset
+  
