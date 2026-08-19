@@ -150,3 +150,5 @@ class ModelEvaluation:
             return model_evaluation_artifact
         except Exception as e:
             raise MyException(e, sys) from e
+
+#done, model_evaluation.py: Created to contain the core logic for comparing the new model's f1 score against the S3 baseline

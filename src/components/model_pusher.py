@@ -47,3 +47,6 @@ class ModelPusher:
             return model_pusher_artifact
         except Exception as e:
             raise MyException(e, sys) from e
+
+
+#done, model_pusher.py, Created to handle the conditional pushing of models to the S3 bucket if they pass the performance threshold

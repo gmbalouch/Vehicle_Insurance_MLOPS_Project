@@ -64,3 +64,5 @@ class Proj1Estimator:
             return self.loaded_model.predict(dataframe=dataframe)
         except Exception as e:
             raise MyException(e, sys)
+
+#done, s3_estimator.py: Created to define the S3 estimator logic, enabling the project to save and retrieve models from the cloud 

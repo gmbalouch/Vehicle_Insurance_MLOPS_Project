@@ -146,5 +146,3 @@
 
 
 
-
-connection string: mongodb+srv://gmbaloch898_db_user:SdsB1F52wFVlwiD6@cluster0.d978cqk.mongodb.net/?appName=Cluster0
