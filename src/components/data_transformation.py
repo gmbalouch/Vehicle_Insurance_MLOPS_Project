@@ -143,8 +143,10 @@ class DataTransformation:
             logging.info("Got the preprocessor object")
 
             logging.info("Initializing transformation for Training-data")
+            logging.info(f"Training columns: {list(input_feature_train_df.columns)}")
             input_feature_train_arr = preprocessor.fit_transform(input_feature_train_df)
             logging.info("Initializing transformation for Testing-data")
+            logging.info(f"Testing columns: {list(input_feature_test_df.columns)}")
             input_feature_test_arr = preprocessor.transform(input_feature_test_df)
             logging.info("Transformation done end to end to train-test df.")
 

@@ -77,8 +77,8 @@ class ModelEvaluation:
     def _drop_id_column(self, df):
         """Drop the 'id' column if it exists."""
         logging.info("Dropping 'id' column")
-        if "_id" in df.columns:
-            df = df.drop("_id", axis=1)
+        if "id" in df.columns:
+            df = df.drop("id", axis=1)
         return df
 
     def evaluate_model(self) -> EvaluateModelResponse:

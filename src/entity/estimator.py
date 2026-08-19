@@ -27,18 +27,41 @@ class MyModel:
         self.trained_model_object = trained_model_object
 
     def predict(self, dataframe: pd.DataFrame) -> DataFrame:
-        """
-        Function accepts preprocessed inputs (with all custom transformations already applied),
-        applies scaling using preprocessing_object, and performs prediction on transformed features.
-        """
         try:
             logging.info("Starting prediction process.")
 
-            # Step 1: Apply scaling transformations using the pre-trained preprocessing object
+            logging.info(f"Prediction dataframe columns: {dataframe.columns.tolist()}")
+
+            # IMPORTANT: inspect the saved preprocessor
+            logging.info(
+                f"Preprocessor feature names in_: "
+                f"{getattr(self.preprocessing_object, 'feature_names_in_', 'NOT FOUND')}"
+            )
+
+            logging.info(
+                f"Preprocessor n_features_in_: "
+                f"{getattr(self.preprocessing_object, 'n_features_in_', 'NOT FOUND')}"
+            )
+
+            preprocessor = self.preprocessing_object.named_steps.get("Preprocessor")
+
+            if preprocessor:
+                logging.info(
+                    f"ColumnTransformer feature_names_in_: "
+                    f"{getattr(preprocessor, 'feature_names_in_', 'NOT FOUND')}"
+                )
+
+                logging.info(
+                    f"ColumnTransformer transformers: "
+                    f"{preprocessor.transformers_}"
+                )
+
             transformed_feature = self.preprocessing_object.transform(dataframe)
 
-            # Step 2: Perform prediction using the trained model
-            logging.info("Using the trained model to get predictions")
+            logging.info(
+                f"Transformed feature shape: {transformed_feature.shape}"
+            )
+
             predictions = self.trained_model_object.predict(transformed_feature)
 
             return predictions

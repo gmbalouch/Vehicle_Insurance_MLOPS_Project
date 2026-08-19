@@ -70,4 +70,5 @@ class VehiclePredictorConfig:
 
 
 
-#done src/entity/config_entity.py file serves as a data class definition (or contract) for your configuration parameters.    
+#done src/entity/config_entity.py file serves as a data class definition (or contract) for your configuration parameters.  
+#   
